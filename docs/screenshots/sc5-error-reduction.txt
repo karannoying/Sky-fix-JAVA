@@ -1,0 +1,28 @@
+$ ./mvnw verify -Pperf -Dtest=LandingErrorTest           (T-V6, live against frozen)
+
+flight              frozen km     burst km     final km  cut@burst    cut@end
+------------------------------------------------------------------------------
+ds6-flight-01           27.67         9.79         1.06        65%        96%
+ds6-flight-02            6.65         1.36         0.01        79%       100%
+ds6-flight-03           11.86         1.87         0.06        84%       100%
+ds6-flight-04           58.00        12.40         0.20        79%       100%
+ds6-flight-05           40.34        11.71         0.21        71%        99%
+ds6-flight-06           15.14         7.33         0.13        52%        99%
+ds6-flight-07            3.87         2.11         0.01        46%       100%
+ds6-flight-08           23.96         6.93         0.14        71%        99%
+ds6-flight-09           23.78         4.28         0.23        82%        99%
+ds6-flight-10            5.92         5.89         0.30         0%        95%
+ds6-flight-11           27.65         6.03         0.09        78%       100%
+ds6-flight-12           15.61         2.04         0.04        87%       100%
+ds6-flight-13           21.19         0.67         0.02        97%       100%
+ds6-flight-14           23.14         3.43         0.05        85%       100%
+ds6-flight-15           49.87        11.50         0.17        77%       100%
+ds6-flight-16            6.05         6.01         0.05         1%        99%
+ds6-flight-17            1.39         2.76         0.03       -98%        98%
+ds6-flight-18           10.76         1.86         0.18        83%        98%
+ds6-flight-19            1.35         5.93         0.56      -339%        59%
+ds6-flight-20           12.48         5.32         0.55        57%        96%
+
+T-V6  median error reduction at burst : 74.0%  (required 30%)  GATED
+      median error reduction at landing: 99.4%  reported
+      median frozen error              : 15.38 km

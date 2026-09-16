@@ -1,0 +1,4 @@
+$ skyfix ingest --sounding data/soundings/SYNTHETIC_2026-09-14_00Z.txt --epoch 2026-09-14T00:00:00Z --mission data/missions/mission.json --balloon data/missions/balloon.json --db skyfix-report.db
+sounding SYNTH @ 2026-09-14T00:00:00Z: 35 levels, 0 lines rejected
+sounding id: 1
+mission "HabSat-1" id=1 (new), config b9997682e191 id=1 (new)

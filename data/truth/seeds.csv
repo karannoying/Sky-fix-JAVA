@@ -1,0 +1,35 @@
+# DS-6 — the synthetic evaluation set (FR-1.4, BLUEPRINT §10).
+#
+# This file IS the dataset definition. Each row names one flight and the seed that reproduces it:
+# the seed fixes both the truth parameters drawn for that flight and the noise applied to its
+# telemetry, so deleting data/truth/*.csv and re-running `run.sh synth` regenerates all twenty
+# flights byte for byte (FR-1.4).
+#
+# O3 and O4 are scored on this set, because no real 30 km or 45 km flight log exists yet. When
+# HabSat flies, the same commands score a recorded log with no code change.
+#
+# The seeds are arbitrary by design — they are 20260914000 + 7919k, an arithmetic sequence with a
+# prime step, chosen only so the list is reproducible by inspection rather than by trusting a
+# one-off random draw. Nothing about the evaluation depends on their values.
+#
+name,seed,launch_epoch_utc
+ds6-flight-01,20260921919,2026-09-14T04:30:00Z
+ds6-flight-02,20260929838,2026-09-14T10:30:00Z
+ds6-flight-03,20260937757,2026-09-15T04:30:00Z
+ds6-flight-04,20260945676,2026-09-15T10:30:00Z
+ds6-flight-05,20260953595,2026-09-16T04:30:00Z
+ds6-flight-06,20260961514,2026-09-16T10:30:00Z
+ds6-flight-07,20260969433,2026-09-17T04:30:00Z
+ds6-flight-08,20260977352,2026-09-17T10:30:00Z
+ds6-flight-09,20260985271,2026-09-18T04:30:00Z
+ds6-flight-10,20260993190,2026-09-18T10:30:00Z
+ds6-flight-11,20261001109,2026-09-19T04:30:00Z
+ds6-flight-12,20261009028,2026-09-19T10:30:00Z
+ds6-flight-13,20261016947,2026-09-20T04:30:00Z
+ds6-flight-14,20261024866,2026-09-20T10:30:00Z
+ds6-flight-15,20261032785,2026-09-21T04:30:00Z
+ds6-flight-16,20261040704,2026-09-21T10:30:00Z
+ds6-flight-17,20261048623,2026-09-22T04:30:00Z
+ds6-flight-18,20261056542,2026-09-22T10:30:00Z
+ds6-flight-19,20261064461,2026-09-23T04:30:00Z
+ds6-flight-20,20261072380,2026-09-23T10:30:00Z

@@ -1,0 +1,20 @@
+target/
+out/
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+.idea/
+*.iml
+.vscode/
+*.log
+.DS_Store
+
+# DS-6 telemetry regenerates from data/truth/seeds.csv (FR-1.4 guarantees byte-identical
+# output), so the ~11 MB of generated logs stays out of the repository. The seed file and the
+# truth manifest are committed, because those are the dataset definition and its summary.
+data/truth/ds6-flight-*.csv
+
+# Python bytecode from the report build script.
+__pycache__/
+*.pyc

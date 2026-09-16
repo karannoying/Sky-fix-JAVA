@@ -1,0 +1,14 @@
+$ ./mvnw test -Pperf -Dtest=SamplerConvergenceTest
+
+members   | LHS mean / sd / cv       | plain MC mean / sd / cv  | cv ratio
+--------------------------------------------------------------------------------------
+      100 |    56388    3198  5.67% |    56418    3633  6.44% |   1.14
+      200 |    56520    1733  3.07% |    55035    2411  4.38% |   1.43
+      400 |    55156    1564  2.83% |    55767    2659  4.77% |   1.68
+      800 |    54727     853  1.56% |    55497    1385  2.50% |   1.60
+     1600 |    55531     699  1.26% |    55850     977  1.75% |   1.39
+
+scatter falls as N^-0.53 (LHS) and N^-0.46 (plain MC)
+plain MC needs about 2.2x the members for the same scatter (BLUEPRINT section 10 claimed 3.75x)
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 170.5 s -- in com.skyfix.core.flight.SamplerConvergenceTest

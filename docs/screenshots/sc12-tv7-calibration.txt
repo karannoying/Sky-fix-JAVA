@@ -1,0 +1,7 @@
+$ ./mvnw verify -Pperf -Dtest=EllipseCalibrationTest     (T-V7, ellipse containment)
+
+nominal         in-sample    out-of-sample      axes (km)    aspect
+----------------------------------------------------------------------
+       50%          55.7%            55.6%     36.7 x 0.2      164
+       90%          90.6%            90.0%     67.0 x 0.4      164
+       95%          94.6%            94.0%     76.4 x 0.5      164

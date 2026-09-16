@@ -1,0 +1,4 @@
+$ skyfix predict --mission data/missions/mission.json --balloon bad-balloon.json
+error: burst_diameter_m (1.0) must exceed launch_diameter_m (1.8) [field=burst_diameter_m, value=1.0, file=bad-balloon.json]
+$ echo $?
+2

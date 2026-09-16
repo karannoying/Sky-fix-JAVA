@@ -1,0 +1,105 @@
+$ skyfix validate
+
+SKYFIX reference-case validation
+================================================================================================
+CASE   QUANTITY                                    MODEL      REFERENCE       ERROR  RESULT
+------------------------------------------------------------------------------------------------
+T-V1   temperature @ 0 m                         288.150        288.150    0.0000%    PASS
+T-V1   pressure @ 0 m                             101325         101325    0.0000%    PASS
+T-V1   density @ 0 m                             1.22500        1.22500    0.0001%    PASS
+T-V1   temperature @ 1000 m                      281.651        281.651    0.0000%    PASS
+T-V1   pressure @ 1000 m                         89876.3        89876.3    0.0000%    PASS
+T-V1   density @ 1000 m                          1.11166        1.11166    0.0001%    PASS
+T-V1   temperature @ 2000 m                      275.154        275.154    0.0000%    PASS
+T-V1   pressure @ 2000 m                         79501.4        79501.4    0.0000%    PASS
+T-V1   density @ 2000 m                          1.00655        1.00655    0.0003%    PASS
+T-V1   temperature @ 3000 m                      268.659        268.659    0.0000%    PASS
+T-V1   pressure @ 3000 m                         70121.2        70121.1    0.0001%    PASS
+T-V1   density @ 3000 m                         0.909254       0.909254    0.0000%    PASS
+T-V1   temperature @ 4000 m                      262.166        262.166    0.0000%    PASS
+T-V1   pressure @ 4000 m                         61660.4        61660.4    0.0001%    PASS
+T-V1   density @ 4000 m                         0.819346       0.819346    0.0000%    PASS
+T-V1   temperature @ 5000 m                      255.676        255.676    0.0000%    PASS
+T-V1   pressure @ 5000 m                         54048.3        54048.2    0.0002%    PASS
+T-V1   density @ 5000 m                         0.736428       0.736428    0.0001%    PASS
+T-V1   temperature @ 7000 m                      242.700        242.700    0.0001%    PASS
+T-V1   pressure @ 7000 m                         41105.3        41105.2    0.0002%    PASS
+T-V1   density @ 7000 m                         0.590018       0.590017    0.0002%    PASS
+T-V1   temperature @ 9000 m                      229.733        229.733    0.0001%    PASS
+T-V1   pressure @ 9000 m                         30800.7        30800.6    0.0003%    PASS
+T-V1   density @ 9000 m                         0.467063       0.467061    0.0004%    PASS
+T-V1   temperature @ 10000 m                     223.252        223.252    0.0001%    PASS
+T-V1   pressure @ 10000 m                        26499.9        26499.8    0.0004%    PASS
+T-V1   density @ 10000 m                        0.413510       0.413509    0.0003%    PASS
+T-V1   temperature @ 11000 m                     216.774        216.773    0.0001%    PASS
+T-V1   pressure @ 11000 m                        22700.0        22699.8    0.0007%    PASS
+T-V1   density @ 11000 m                        0.364802       0.364800    0.0004%    PASS
+T-V1   temperature @ 12000 m                     216.650        216.650    0.0000%    PASS
+T-V1   pressure @ 12000 m                        19399.4        19399.3    0.0008%    PASS
+T-V1   density @ 12000 m                        0.311938       0.311936    0.0007%    PASS
+T-V1   temperature @ 14000 m                     216.650        216.650    0.0000%    PASS
+T-V1   pressure @ 14000 m                        14170.4        14170.2    0.0013%    PASS
+T-V1   density @ 14000 m                        0.227856       0.227854    0.0009%    PASS
+T-V1   temperature @ 16000 m                     216.650        216.650    0.0000%    PASS
+T-V1   pressure @ 16000 m                        10352.8        10352.7    0.0013%    PASS
+T-V1   density @ 16000 m                        0.166471       0.166469    0.0011%    PASS
+T-V1   temperature @ 18000 m                     216.650        216.650    0.0000%    PASS
+T-V1   pressure @ 18000 m                        7565.23        7565.10    0.0018%    PASS
+T-V1   density @ 18000 m                        0.121647       0.121645    0.0017%    PASS
+T-V1   temperature @ 20000 m                     216.650        216.650    0.0000%    PASS
+T-V1   pressure @ 20000 m                        5529.31        5529.19    0.0022%    PASS
+T-V1   density @ 20000 m                       0.0889099      0.0889080    0.0022%    PASS
+T-V1   temperature @ 22000 m                     218.574        218.574    0.0001%    PASS
+T-V1   pressure @ 22000 m                        4047.50        4047.39    0.0027%    PASS
+T-V1   density @ 22000 m                       0.0645098      0.0645081    0.0027%    PASS
+T-V1   temperature @ 25000 m                     221.552        221.552    0.0001%    PASS
+T-V1   pressure @ 25000 m                        2549.22        2549.14    0.0033%    PASS
+T-V1   density @ 25000 m                       0.0400839      0.0400825    0.0035%    PASS
+T-V1   temperature @ 28000 m                     224.527        224.528    0.0001%    PASS
+T-V1   pressure @ 28000 m                        1616.20        1616.13    0.0042%    PASS
+T-V1   density @ 28000 m                       0.0250763      0.0250752    0.0044%    PASS
+T-V1   temperature @ 30000 m                     226.509        226.509    0.0001%    PASS
+T-V1   pressure @ 30000 m                        1197.03        1196.98    0.0043%    PASS
+T-V1   density @ 30000 m                       0.0184102      0.0184093    0.0047%    PASS
+T-V1   temperature @ 32000 m                     228.490        228.490    0.0002%    PASS
+T-V1   pressure @ 32000 m                        889.064        889.017    0.0053%    PASS
+T-V1   density @ 32000 m                       0.0135552      0.0135544    0.0055%    PASS
+T-V1   temperature @ 35000 m                     236.513        236.515    0.0005%    PASS
+T-V1   pressure @ 35000 m                        574.595        574.559    0.0062%    PASS
+T-V1   density @ 35000 m                      0.00846338     0.00846281    0.0067%    PASS
+T-V1   temperature @ 40000 m                     250.350        250.351    0.0006%    PASS
+T-V1   pressure @ 40000 m                        287.144        287.122    0.0076%    PASS
+T-V1   density @ 40000 m                      0.00399568     0.00399535    0.0082%    PASS
+T-V1   temperature @ 44000 m                     261.403        261.405    0.0007%    PASS
+T-V1   pressure @ 44000 m                        169.496        169.482    0.0085%    PASS
+T-V1   density @ 44000 m                      0.00225885     0.00225864    0.0093%    PASS
+T-V1   temperature @ 46000 m                     266.925        266.927    0.0008%    PASS
+T-V1   pressure @ 46000 m                        131.341        131.328    0.0096%    PASS
+T-V1   density @ 46000 m                      0.00171415     0.00171397    0.0104%    PASS
+T-V1   temperature @ 47000 m                     269.684        269.686    0.0008%    PASS
+T-V1   pressure @ 47000 m                        115.851        115.840    0.0096%    PASS
+T-V1   density @ 47000 m                      0.00149652     0.00149636    0.0107%    PASS
+
+T-V2   ascent rate @ 2000 m                      3.94258        3.94272    0.0036%    PASS
+T-V2   ascent rate @ 8001 m                      4.39323        4.39346    0.0052%    PASS
+T-V2   ascent rate @ 14001 m                     5.05002        5.05048    0.0092%    PASS
+T-V2   ascent rate @ 20000 m                     5.90730        5.90804    0.0125%    PASS
+T-V2   ascent rate @ 26002 m                     6.92503        6.92622    0.0172%    PASS
+
+T-V3   RK4 vs RKF45 landing @ dt=0.500 s      0.00254561        0.00000   0.002546    PASS
+T-V3   RK4 vs RKF45 landing @ dt=0.250 s     8.53528e-05        0.00000  8.535e-05    PASS
+T-V3   RK4 vs RKF45 landing @ dt=0.125 s     4.84572e-06        0.00000  4.846e-06    PASS
+
+T-V4   gas-law mass invariant, worst rel...    7.91290e-16        0.00000  7.913e-16    PASS
+------------------------------------------------------------------------------------------------
+  T-V1   75 checks, tolerance 0.100%     worst 0.01071%     PASS
+  T-V2    5 checks, tolerance 2.000%     worst 0.01719%     PASS
+  T-V3    3 checks, tolerance 50.00 m    worst 0.002546     PASS
+  T-V4    1 checks, tolerance 1.000e-06 1 worst 7.913e-16    PASS
+
+Not yet implemented (reported, not silently passed):
+  - T-V5 parameter recovery over 20 synthetic flights - needs the particle filter (FR-3.2), due W8
+  - T-V6 live-vs-frozen landing error reduction - needs the estimator (FR-3.3), due W9
+  - T-V7 95% ellipse empirical containment - needs the ensemble (FR-2.4), due W5
+
+84 checks, 84 passed, 0 failed

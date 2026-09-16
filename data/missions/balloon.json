@@ -1,0 +1,15 @@
+{
+  "name": "HabSat-1200g",
+
+  "_comment": "verify: the burst diameter and nominal launch diameter are catalogue figures for a 1200 g latex sounding balloon and must be checked against the manufacturer's datasheet before the report quotes them (DS-4). free_lift_kg is the primary inflation parameter, not launch_diameter_m -- see ADR-11.",
+
+  "payload_mass_kg": 1.2,
+  "envelope_mass_kg": 1.2,
+  "launch_diameter_m": 1.8,
+  "burst_diameter_m": 7.0,
+  "free_lift_kg": 1.1,
+  "ascent_cd": 0.45,
+  "chute_area_m2": 1.0,
+  "chute_cd": 1.4,
+  "gas": "HELIUM"
+}

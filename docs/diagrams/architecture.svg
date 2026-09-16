@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" width="900" height="470"
+     font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill: #f4f7fb; stroke: #2a78d6; stroke-width: 1.6; }
+    .leaf { fill: #fdf4ee; stroke: #eb6834; stroke-width: 1.6; }
+    .lbl { font-size: 14px; fill: #0b0b0b; font-weight: bold; }
+    .sub { font-size: 11px; fill: #52514e; }
+    .arrow { stroke: #898781; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+    .note { font-size: 11px; fill: #52514e; font-style: italic; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#898781"/>
+    </marker>
+  </defs>
+
+  <rect class="box" x="30" y="20" width="150" height="46" rx="5"/>
+  <text class="lbl" x="105" y="41" text-anchor="middle">cli</text>
+  <text class="sub" x="105" y="57" text-anchor="middle">SkyfixCli, ConsoleReporter</text>
+
+  <rect class="box" x="30" y="110" width="150" height="46" rx="5"/>
+  <text class="lbl" x="105" y="131" text-anchor="middle">app</text>
+  <text class="sub" x="105" y="147" text-anchor="middle">services, RunContext</text>
+
+  <rect class="box" x="290" y="20" width="250" height="52" rx="5"/>
+  <text class="lbl" x="415" y="41" text-anchor="middle">core.atmos</text>
+  <text class="sub" x="415" y="58" text-anchor="middle">Ussa1976Atmosphere, WindField</text>
+
+  <rect class="box" x="290" y="92" width="250" height="52" rx="5"/>
+  <text class="lbl" x="415" y="113" text-anchor="middle">core.flight</text>
+  <text class="sub" x="415" y="130" text-anchor="middle">Integrator, FlightPhase, EnsembleRunner</text>
+
+  <rect class="box" x="290" y="164" width="250" height="52" rx="5"/>
+  <text class="lbl" x="415" y="185" text-anchor="middle">estimation</text>
+  <text class="sub" x="415" y="202" text-anchor="middle">ParticleFilter, FilterBank, BurstDetector</text>
+
+  <rect class="box" x="290" y="236" width="250" height="52" rx="5"/>
+  <text class="lbl" x="415" y="257" text-anchor="middle">persistence</text>
+  <text class="sub" x="415" y="274" text-anchor="middle">Database, 8 DAOs, SchemaInitializer</text>
+
+  <rect class="box" x="290" y="308" width="250" height="52" rx="5"/>
+  <text class="lbl" x="415" y="329" text-anchor="middle">io</text>
+  <text class="sub" x="415" y="346" text-anchor="middle">readers, writers, PlotExporter</text>
+
+  <rect class="leaf" x="640" y="150" width="230" height="86" rx="5"/>
+  <text class="lbl" x="755" y="176" text-anchor="middle">domain</text>
+  <text class="sub" x="755" y="194" text-anchor="middle">value types, Geodesy, Gaussian,</text>
+  <text class="sub" x="755" y="210" text-anchor="middle">Units, exception hierarchy</text>
+  <text class="note" x="755" y="228" text-anchor="middle">depends on nothing</text>
+
+  <path class="arrow" d="M 105 66 L 105 110"/>
+  <path class="arrow" d="M 180 133 L 290 46"/>
+  <path class="arrow" d="M 180 133 L 290 118"/>
+  <path class="arrow" d="M 180 133 L 290 190"/>
+  <path class="arrow" d="M 180 133 L 290 262"/>
+  <path class="arrow" d="M 180 133 L 290 334"/>
+  <path class="arrow" d="M 540 46 L 640 170"/>
+  <path class="arrow" d="M 540 118 L 640 180"/>
+  <path class="arrow" d="M 540 190 L 640 193"/>
+  <path class="arrow" d="M 540 262 L 640 215"/>
+  <path class="arrow" d="M 540 334 L 640 230"/>
+
+  <text class="note" x="30" y="420">Dependencies point one way only. There are no cycles, which is what lets the estimator be</text>
+  <text class="note" x="30" y="438">tested without a database and the flight model without a CLI.</text>
+  <text class="note" x="30" y="456">Every aerospace algorithm inside core.* and estimation is hand-written in this repository.</text>
+</svg>

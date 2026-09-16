@@ -1,0 +1,15 @@
+$ ./mvnw verify   (JaCoCo line coverage, gate: 80% on core.* and estimation)
+
+package                              covered     lines
+------------------------------------------------------
+com.skyfix.app                         73.8%       565
+com.skyfix.cli                         69.9%       442
+com.skyfix.core.atmos                 100.0%       164
+com.skyfix.core.flight                 93.1%       421
+com.skyfix.domain                      93.7%       653
+com.skyfix.domain.error                91.3%        69
+com.skyfix.estimation                  91.7%       587
+com.skyfix.io                          74.9%       889
+com.skyfix.persistence                 73.2%       821
+------------------------------------------------------
+TOTAL                                  81.6%      4611

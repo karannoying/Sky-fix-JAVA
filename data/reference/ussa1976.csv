@@ -1,0 +1,53 @@
+# DS-3 — U.S. Standard Atmosphere 1976 reference values. Oracle for T-V1 (FR-2.1).
+#
+# Columns: altitude_m is GEOMETRIC altitude above mean sea level.
+#          temperature_k [K], pressure_pa [Pa], density_kg_m3 [kg/m3].
+#
+# PROVENANCE — read before citing this file in the report.
+#
+# These 25 rows were produced on 2026-09-14 by evaluating two INDEPENDENT
+# third-party implementations of the standard and recording their agreement:
+#
+#   (a) pyatmos.standardatmos.coesa76  — COESA/U.S. Standard Atmosphere 1976, to 86 km.
+#                                        Values in this file are (a)'s output.
+#   (b) ambiance.Atmosphere            — ICAO Standard Atmosphere 1993, which is
+#                                        numerically identical to USSA-1976 below 80 km.
+#
+# Maximum disagreement between (a) and (b) across all 75 values: 0.00987 %
+# (density at 47 km). That is ~10x inside the 0.1 % T-V1 tolerance, so the two
+# implementations corroborate each other as an oracle independent of SKYFIX's own
+# Ussa1976Atmosphere. The generating script is committed at
+# scripts/reference/gen_ussa1976.py so this table is reproducible.
+#
+# verify: BEFORE SUBMISSION these values must be re-transcribed by hand from the
+# primary source — NOAA/NASA/USAF, "U.S. Standard Atmosphere, 1976",
+# NOAA-S/T 76-1562, Table I — and this header replaced with that citation.
+# The primary document was not reachable from the build environment when this
+# file was generated, so the report must not yet cite it as the source.
+#
+altitude_m,temperature_k,pressure_pa,density_kg_m3
+0.0,288.1500,101325,1.225
+1000.0,281.6510,89876.3,1.11166
+2000.0,275.1541,79501.4,1.00655
+3000.0,268.6592,70121.1,0.909254
+4000.0,262.1663,61660.4,0.819346
+5000.0,255.6755,54048.2,0.736428
+7000.0,242.6999,41105.2,0.590017
+9000.0,229.7325,30800.6,0.467061
+10000.0,223.2519,26499.8,0.413509
+11000.0,216.7732,22699.8,0.3648
+12000.0,216.6500,19399.3,0.311936
+14000.0,216.6500,14170.2,0.227854
+16000.0,216.6500,10352.7,0.166469
+18000.0,216.6500,7565.1,0.121645
+20000.0,216.6500,5529.19,0.088908
+22000.0,218.5743,4047.39,0.0645081
+25000.0,221.5523,2549.14,0.0400825
+28000.0,224.5275,1616.13,0.0250752
+30000.0,226.5094,1196.98,0.0184093
+32000.0,228.4901,889.017,0.0135544
+35000.0,236.5146,574.559,0.00846281
+40000.0,250.3512,287.122,0.00399535
+44000.0,261.4050,169.482,0.00225864
+46000.0,266.9267,131.328,0.00171397
+47000.0,269.6863,115.84,0.00149636

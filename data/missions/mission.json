@@ -1,0 +1,17 @@
+{
+  "name": "HabSat-1",
+  "launch_lat": 23.2599,
+  "launch_lon": 77.4126,
+  "launch_alt_m": 500.0,
+  "ground_elev_m": 500.0,
+  "launch_epoch_utc": "2026-09-14T04:30:00Z",
+
+  "_comment": "Ground elevation is a single constant for the whole landing area (BLUEPRINT §4 puts terrain lookup out of scope; SRTM is Stretch). verify: the EGM96 geoid undulation for this region, which is applied once at ingest, is not yet confirmed.",
+
+  "sim": {
+    "step_s": 0.25,
+    "integrator": "RK4",
+    "t_end_s": 21600,
+    "state_sample_stride": 10
+  }
+}

@@ -1,0 +1,62 @@
+# SYNTHETIC SOUNDING — NOT A REAL OBSERVATION.
+#
+# This file exists so WyomingSoundingReader, SoundingWindField and the ingest path can be
+# exercised offline (CLAUDE.md rule 2). It is written in the University of Wyoming fixed-width
+# upper-air layout, but the data are GENERATED, not observed:
+#
+#   * PRES / HGHT / TEMP / THTA follow the standard atmosphere at the listed pressure levels;
+#   * DRCT / SKNT are an analytic mid-latitude profile — westerlies strengthening to a jet near
+#     12 km, backing and weakening above it;
+#   * DWPT / RELH / MIXR are plausible filler and are not read by SKYFIX.
+#
+# [PLACEHOLDER — DS-1] The blueprint calls for three real cached soundings in data/soundings/.
+# They could not be fetched from the build environment, which has no access to the archive.
+# Before the report describes DS-1, replace this file with real archived soundings and confirm
+# the archive's exact column layout and terms of use (the parser's verify: marker).
+#
+# Nothing in this file may be quoted as an observation.
+
+Station identifier: SYNTH
+Observation time: 2026-09-14 00Z
+Station latitude: 23.26
+Station longitude: 77.41
+
+-----------------------------------------------------------------------------
+   PRES   HGHT   TEMP   DWPT   RELH   MIXR   DRCT   SKNT   THTA   THTE   THTV
+    hPa     m      C      C      %    g/kg    deg   knot     K      K      K
+-----------------------------------------------------------------------------
+ 1005.0     69   14.6   11.5   84.0  11.67    242      2  287.3  292.3  288.3
+ 1000.0    111   14.3   11.1   83.4  11.48    243      2  287.4  292.4  288.4
+  975.0    323   12.9    9.5   80.5  10.54    244      2  288.1  293.1  289.1
+  950.0    540   11.5    7.8   77.7   9.67    245      4  288.8  293.8  289.8
+  925.0    762   10.0    6.0   74.9   8.85    246      5  289.6  294.6  290.6
+  900.0    989    8.6    4.3   72.1   8.08    246      6  290.3  295.3  291.3
+  850.0   1458    5.5    0.6   66.7   6.70    248      7  291.9  296.9  292.9
+  800.0   1950    2.3   -3.3   61.4   5.50    250      9  293.6  298.6  294.6
+  750.0   2467   -1.0   -7.3   56.3   4.47    251     10  295.5  300.5  296.5
+  700.0   3014   -4.6  -11.6   51.4   3.59    252     11  297.4  302.4  298.4
+  650.0   3593   -8.3  -16.1   46.7   2.85    253     12  299.5  304.5  300.5
+  600.0   4209  -12.3  -21.0   42.1   2.23    255     14  301.8  306.8  302.8
+  550.0   4869  -16.6  -26.1   37.8   1.71    256     16  304.4  309.4  305.4
+  500.0   5579  -21.2  -31.7   33.5   1.29    257     20  307.2  312.2  308.2
+  450.0   6350  -26.2  -37.7   29.5   0.95    258     26  310.3  315.3  311.3
+  400.0   7194  -31.7  -44.3   25.6   0.68    259     35  313.8  318.8  314.8
+  350.0   8128  -37.8  -51.6   21.9   0.46    261     49  317.8  322.8  318.8
+  300.0   9177  -44.6  -59.6   18.4   0.31    262     67  322.5  327.5  323.5
+  250.0  10380  -52.4  -67.4   15.1   0.19    264     87  328.2  333.2  329.2
+  225.0  11056  -56.5  -71.5   13.5   0.14    265     95  331.9  336.9  332.9
+  200.0  11806  -56.5  -71.5   11.9   0.11    266     99  343.3  348.3  344.3
+  175.0  12656  -56.5  -71.5   10.3   0.08    267     97  356.7  361.7  357.7
+  150.0  13638  -56.5  -71.5    8.8   0.05    268     87  372.7  377.7  373.7
+  125.0  14799  -56.5  -71.5    7.2   0.03    270     68  392.7  397.7  393.7
+  100.0  16221  -56.5  -71.5    5.7   0.02    272     44  418.6  423.6  419.6
+   85.0  17257  -56.5  -71.5    4.8   0.01    273     30  438.5  443.5  439.5
+   70.0  18495  -56.5  -71.5    3.9   0.01    275     20  463.5  468.5  464.5
+   60.0  19479  -56.5  -71.5    3.3   0.00    276     15  484.4  489.4  485.4
+   50.0  20643  -55.9  -70.9    2.7   0.00    278     13  511.7  516.7  512.7
+   40.0  22076  -54.5  -69.5    2.1   0.00    279     12  549.0  554.0  550.0
+   30.0  23938  -52.7  -67.7    2.0   0.00    282      7  601.1  606.1  602.1
+   25.0  25127  -51.5  -66.5    2.0   0.00    284      4  636.7  641.7  637.7
+   20.0  26592  -50.0  -65.0    2.0   0.00    285      2  683.1  688.1  684.1
+   15.0  28495  -48.1  -63.1    2.0   0.00    288      2  747.9  752.9  748.9
+   10.0  31000  -45.7  -60.7    2.0   0.00    291      2  849.1  854.1  850.1

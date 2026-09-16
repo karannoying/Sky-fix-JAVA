@@ -1,0 +1,38 @@
+$ ./mvnw verify -Pperf -Dtest=ParameterRecoveryTest      (T-V5, 20 DS-6 flights)
+
+flight              lift % ascentCd% burstScl% chuteCd %   burst m    ESS band covers truth
+------------------------------------------------------------------------------------------------
+ds6-flight-01        +6.02     +5.91     +0.75     +0.83       +31   1553  lift cd burst chute
+ds6-flight-02        -5.45     -4.03     -0.81     +9.90       -41   1544  lift cd burst chute
+ds6-flight-03        +3.66     +2.55     +0.48    +16.12       +20   1659  lift cd burst -----
+ds6-flight-04       +15.86    +12.70     +1.44     +0.36        -5   1557  lift cd burst chute
+ds6-flight-05        -0.26     +2.53     +2.40     -2.23      +456   1690  lift cd burst chute
+ds6-flight-06        -4.81     -3.19     -0.15    +14.46       +74   1521  lift cd burst -----
+ds6-flight-07        -8.35     -6.62     -0.99     -0.40        -5   1695  lift cd burst chute
+ds6-flight-08        +5.09     +3.25     +0.46     +1.10       -17   1618  lift cd burst chute
+ds6-flight-09       -19.70    -15.66     -2.15     -0.72       +37   1747  ---- -- burst chute
+ds6-flight-10       -12.86    -11.28     -1.14    -15.26       +82   1653  lift cd burst chute
+ds6-flight-11       -10.67     -8.38     -1.36     -0.13       -32   1593  lift cd burst chute
+ds6-flight-12       +16.35    +11.99     +1.47     +1.11       -25   1695  lift cd burst chute
+ds6-flight-13       +32.12    +26.08     +2.42     +0.19       -13   1751  ---- -- ----- chute
+ds6-flight-14       +11.84     +9.69     +1.08    -12.84       -29   1638  lift cd burst -----
+ds6-flight-15        -2.75     -2.49     -0.38     -0.87       -19   1596  lift cd burst chute
+ds6-flight-16       -19.78    -15.79     -2.00     -0.14       +55   1625  ---- -- ----- chute
+ds6-flight-17       -11.62     -8.30     -1.26     -3.21       +33   1575  lift cd burst chute
+ds6-flight-18       +32.83    +26.67     +3.13     -2.52       +68   1654  ---- -- ----- chute
+ds6-flight-19       +32.96    +24.01     +3.14    -19.82       +36   1448  ---- -- ----- -----
+ds6-flight-20       +14.23     +9.73     +1.62     -0.14       +34   1747  lift cd burst chute
+
+coverage of the 5-95% bands, out of 20:
+  FREE_LIFT    15/20
+  ASCENT_CD    15/20
+  BURST_SCALE  16/20
+  CHUTE_CD     16/20
+
+T-V5  burst altitude <= 500 m : 20/20   (required 18)  GATED
+      parachute Cd <= 5%      : 14/20   reported -- recovery is bimodal, most flights well
+                                      under 1% and a handful 15-26% out; not yet explained
+      ascent Cd <= 5%          : 6/20   reported -- see ADR-3: a 5% ascent-Cd error
+                                      absorbed by a 6% free-lift change reproduces the whole flight to
+                                      10.5 m RMS, the GPS noise. The observation set cannot settle this
+                                      parameter to 5%, so a gate on it would test the prior, not the filter

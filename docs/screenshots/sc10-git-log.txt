@@ -1,0 +1,40 @@
+$ git log --oneline --graph --decorate -25
+* 8143eb2 (HEAD -> claude/brave-lamport-stn10e, origin/claude/brave-lamport-stn10e) fix(test): T-E3 depended on generated telemetry and broke CI on a fresh clone
+* a1b81bd (tag: v1.0-submission) docs: report, screenshots, diagrams and the compliance checklist
+* 0b49605 (tag: v0.4-validated) test(core,io,cli): T-V7 ellipse calibration, T-E3 corrupt inputs, CLI replay cases
+* aaa3e27 feat(app,io): prediction-error scoring, T-V6, and the PL-3/PL-4/PL-5 charts
+* b982564 feat(estimation): pool independent filters so the band is a credible interval
+* 06ac192 (tag: v0.3-estimator) test(estimation): T-V5 parameter recovery across all twenty DS-6 flights
+* 18efccb feat(app,persistence): replay service, estimate persistence and the CLI replay command
+* 06416bb feat(estimation): bootstrap particle filter over the four flight parameters
+* d86c770 feat(estimation): measurement model, resampler and posterior
+* 8ea883b feat(io,estimation): telemetry replay, DS-6 generator and burst detection
+* 607beda docs: ADR-16 on chart design, HANDOFF ready for week 7
+* 1907486 feat(io): PlotExporter for PL-1, PL-2 and PL-6
+* 50f6bef (tag: v0.2-ensemble) perf: measure T-P1 and T-P2 without instrumentation; NFR-1 met
+* ac5d679 feat(flight): ensemble runner, landing ellipse and the footprint path
+* 03ba28f feat(flight): Latin-hypercube dispersion sampler and its distributions
+* 5c6770f (tag: v0.1-mvp) docs: update HANDOFF for the v0.1-mvp state
+* 7b136da feat(cli): ingest, predict and validate wired end to end
+* 1580662 feat(persistence): SQLite, schema initialiser, DAOs and the source-rule scan
+* b664fbc feat(flight): phases, simulator and wind fields, with a stability guard
+* 3b2ad93 feat(atmos): USSA-1976 layer model and the integrator family
+* 883eb7b feat(domain): value types, builders and the exception hierarchy
+* 4cba998 chore: project scaffold, Maven wrapper, CI
+* c97a694 (origin/main, main) Initial commit
+
+$ git tag -n1
+v0.1-mvp        v0.1-mvp - the MVP cut-line
+v0.2-ensemble   v0.2-ensemble - the landing footprint
+v0.3-estimator  v0.3-estimator - the in-flight parameter estimator
+v0.4-validated  v0.4-validated - T-V5, T-V6 and T-V7 measured and green
+v1.0-submission v1.0-submission - SKYFIX complete: footprint prediction, in-flight estimation, validated
+
+The five milestone tags exist in the repository and point at the commits above.
+They are not on the remote: this branch is pushed through a relay whose policy
+accepts refs/heads/* and refuses refs/tags/* with HTTP 403. Confirmed against a
+batch push, a single tag, an explicit refspec and a lightweight tag. Whoever
+clones this for grading gets the tags with `git fetch --tags` from a checkout
+that has them, or the maintainer can push them directly:
+
+  git push origin v0.1-mvp v0.2-ensemble v0.3-estimator v0.4-validated v1.0-submission

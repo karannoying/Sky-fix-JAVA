@@ -1,0 +1,45 @@
+%% SKYFIX replay loop (FR-3.2, FR-3.3, FR-3.4).
+%% Corrected per ADR-17: the re-prediction sits in a guarded block, not in the per-sample loop.
+%% A 10x replay of a 1 Hz log affords 100 ms per sample; a 5 s re-prediction cannot run per sample.
+sequenceDiagram
+    actor User
+    participant CLI as SkyfixCli
+    participant RS as ReplayService
+    participant TR as CsvTelemetryReader
+    participant BD as BurstDetector
+    participant FB as FilterBank
+    participant ER as EnsembleRunner
+    participant DB as DAOs
+
+    User->>CLI: run.sh replay --log flight.csv --every 20
+    CLI->>RS: replay(mission, config, series, options, context)
+    RS->>DB: save(RunRecord kind=REPLAY, seed, gitSha, configHash)
+    DB-->>RS: runId
+    RS->>TR: read(logPath)
+    TR-->>RS: TelemetrySeries
+    RS->>FB: start(launch, launchEpoch)
+
+    loop per assimilated sample (FR-1.2)
+        RS->>BD: observe(sample)
+        alt burst detected (FR-3.4)
+            BD-->>RS: BurstEvent(epoch, altitude)
+            RS->>FB: burstObserved()
+        end
+        RS->>FB: update(observation)
+        par each independent filter (ADR-18)
+            FB->>FB: propagate, weight (FR-3.1), ESS check
+            FB->>FB: systematic resample + Liu-West jitter if ESS < N/2
+        end
+        FB-->>RS: pooled Posterior(median, p05, p95, ESS)
+
+        alt 50 s of flight time elapsed, or burst, or last airborne sample (ADR-17)
+            RS->>ER: runFrom(measured state, posterior spec, 200 members)
+            ER-->>RS: LandingEllipse(50%, 95%)
+            RS->>DB: saveEllipse(runId, epoch, ellipse)
+        end
+    end
+
+    RS->>DB: saveAll(runId, posteriors)
+    RS->>DB: finish(runId, wallClockMs, OK)
+    RS-->>CLI: ReplayResult
+    CLI-->>User: posterior bands, burst, footprint, PL-3

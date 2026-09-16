@@ -1,0 +1,25 @@
+$ skyfix replay --log data/truth/ds6-flight-01.csv --every 20 --sounding-id 1
+flight log "ds6-flight-01.csv" id=1, 8405 samples (new)
+  0 duplicate packet ids, 0 out of order, 75 GPS dropouts, 0 lines rejected
+
+Run 2 - replay estimate, 496 particles (wind: SOUNDING)
+------------------------------------------------------------------------
+  burst detected      30,827 m   at 2026-09-14T06:09:01Z (5 s after the sign change)
+  assimilated            421 samples, 140 re-predictions
+
+  parameter          median        5%         95%
+  free lift (kg)      1.2328    0.6490    1.4395
+  ascent Cd           0.5150    0.3126    0.5837
+  burst scale         1.1106    0.8710    1.1569
+  parachute Cd        1.4175    1.1814    2.0000
+
+  final footprint at T+8339 s
+  50% ellipse   centre  23.052764, 78.091506
+                 axes 36 m x 0.01 m at 66 deg | area 1 m2
+  95% ellipse   centre  23.052764, 78.091506
+                 axes 75 m x 0.01 m at 66 deg | area 2 m2
+
+  filter       ESS 325 of 496 | 1000 resamples
+  re-predict   177 ms mean over 140 runs on 4 threads
+  wrote 4 plots to out/run-2
+  seed 20260914 | git 0b4960585bcd6ed72d1cd17ca43beb279a00aa8a | RK4 dt=0.25 s | every 20 samples | 34011 ms

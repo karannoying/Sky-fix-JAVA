@@ -1,0 +1,16 @@
+$ skyfix predict --members 1000 --sounding-id 1
+
+Run 1 - landing footprint, 1000 members (wind: SOUNDING)
+------------------------------------------------------------------------
+  nominal burst       28,668 m   at T+5522 s
+  mean burst          28,586 m
+  flight time          8,021 s   (134 min)
+
+  50% ellipse   centre  23.363580, 78.812592
+                 axes 36.7 km x 224 m at 85 deg | area 25.81 km2
+  95% ellipse   centre  23.363580, 78.812592
+                 axes 76.4 km x 465 m at 85 deg | area 111.57 km2
+
+  ensemble     5,208 ms on 4 threads
+  exports      out/run-1
+  seed 20260914 | git 0b4960585bcd6ed72d1cd17ca43beb279a00aa8a | RK4 dt=0.25 s | 1000 members | 6540 ms
