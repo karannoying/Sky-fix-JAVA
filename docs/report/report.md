@@ -1,3 +1,4 @@
+
 # SKYFIX
 
 ## Predicting a high-altitude balloon's landing as a confidence ellipse, and re-estimating the flight's parameters from its own telemetry
@@ -13,7 +14,7 @@
 ### Contents
 
 | § | Section |
-|---|---|
+| --- | --- |
 | 1 | Introduction and objectives |
 | 2 | Problem statement, users and scope |
 | 3 | Functional requirements |
@@ -37,7 +38,7 @@
 ### Use cases
 
 | ID | Use case | Actor | Command |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | UC-1 | Pre-flight prediction: a footprint from catalogue values and a sounding | Recovery team lead | `predict --members 1000` |
 | UC-2 | **In-flight re-prediction (primary):** estimate the flight's parameters from telemetry and re-predict the footprint as it flies | Recovery team lead | `replay --log flight.csv` |
 | UC-3 | Post-flight scoring: how much did watching the flight help? | Payload engineer | `ReportService`, T-V6 |
@@ -61,8 +62,8 @@ re-predicts the footprint after each update.
 
 ### Objectives and whether they were met
 
-| | Objective | Acceptance | Result |
-|---|---|---|---|
+|  | Objective | Acceptance | Result |
+| --- | --- | --- | --- |
 | **O1** | Model the flight from published physics, not a curve fit | USSA-1976 within 0.1% of the reference table | **met** — worst 0.0107% over 25 altitudes |
 | **O2** | Predict a footprint, not a point | 50% and 95% ellipses from a dispersed ensemble | **met** — 1,000 members in 5.84 s against a 30 s budget |
 | **O3** | Estimate flight parameters from telemetry | Burst altitude within 500 m on ≥18 of 20 flights | **met** — 20 of 20, seventeen inside 130 m |
@@ -96,8 +97,8 @@ honest. §11 records what happened when they were not.
 
 ### Target users
 
-| | Who | What they need |
-|---|---|---|
+|  | Who | What they need |
+| --- | --- | --- |
 | P1 | Recovery team lead | Where to drive, and how large an area to plan for. Updated while the balloon is up. |
 | P2 | Payload engineer | The altitude profile against time — how long above 25 km, what the burst altitude was. |
 | P3 | Course examiner | Evidence that the physics, the persistence, the concurrency and the OOP are the author's own, and that the claims are tested. |
@@ -188,7 +189,7 @@ haversine within 1 m.
 ### Implementation and verification map
 
 | ID | Requirement | Implemented by | Verified by |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | FR-1.1 | Sounding ingest with per-line rejection | `WyomingSoundingReader`, `SoundingDao` | T-U-WIND, T-E3 |
 | FR-1.2 | Telemetry ingest, replay-only | `CsvTelemetryReader`, `TelemetryDao` | T-E5, T-P4 |
 | FR-1.3 | Configuration validated by rule | `BalloonConfig.Builder`, `ConfigLoader` | T-U-BUILDER, T-E1 |
@@ -227,7 +228,7 @@ The CLI, io and persistence packages are exempt from the strict gate and covered
 command surface by T-U1, T-E1 and T-E3.
 
 | ID | Requirement | Budget | Measured |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | NFR-1 | 1,000-member ensemble on 4 cores | 30 s | **5.84 s** (3-run median, warm JVM, sounding wind) |
 | NFR-1 | 200-member re-prediction | 5 s | **0.18 s** mean over 140 re-predictions |
 | NFR-2 | Reproducibility: same seed, same ellipse | 1e-9 | **met**, 1 thread against 4 |
@@ -258,7 +259,7 @@ Jackson for configuration JSON, XChart for PNG export, JUnit and AssertJ for tes
 `docs/diagrams/` holds the architecture diagram above and the replay sequence below. The sequence
 was **corrected during week 9** — see ADR-17 — because the version in BLUEPRINT §8 drew the
 re-prediction inside the per-sample loop, which the requirement's own timing budget makes
-impossible. CLAUDE.md's sixth rule is that a stale diagram is worse than no diagram, so the
+impossible. KARAN.md's sixth rule is that a stale diagram is worse than no diagram, so the
 correction landed in the same commit as the code.
 
 {{include:docs/diagrams/replay-sequence.mmd}}
@@ -303,7 +304,7 @@ turned on; see §11.
 ### All eighteen decisions
 
 | ID | Decision | Chosen over | Why |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | ADR-1 | USSA-1976 atmosphere | exponential; NRLMSISE-00 | Offline and closed-form, and the published table becomes the T-V1 oracle. An exponential is 48.3% off in density by 35 km. |
 | ADR-2 | SQLite with hand-written DAOs | H2; MySQL; JPA/Hibernate | The examiner must see the author's JDBC and SQL; one file, zero install. |
 | ADR-3 | Bootstrap particle filter | EKF; UKF; batch least squares | Burst is a hard discontinuity and the pre-burst posterior is genuinely uninformative; no Jacobians needed. |
@@ -330,7 +331,7 @@ turned on; see §11.
 ### Datasets
 
 | ID | What | Provenance |
-|---|---|---|
+| --- | --- | --- |
 | DS-1 | Radiosonde sounding | `data/soundings/` ships a **synthetic** profile, labelled as such in its header, because the upper-air archive was not reachable from the build environment. `[PLACEHOLDER — a real sounding, once one can be downloaded and its licence checked.]` |
 | DS-3 | USSA-1976 reference table, 25 altitudes | Generated from two independent third-party implementations of the standard that agree to **0.00987%**. Carries a `verify:` marker requiring hand transcription from NOAA-S/T 76-1562 Table I. |
 | DS-4 | Balloon catalogue figures | `data/missions/balloon.json` carries a `verify:` marker on the burst and launch diameters. |
@@ -354,7 +355,7 @@ rather than being persisted and reported. Test **T-S1** scans `src/main` for SQL
 concatenation and fails the build if it finds any.
 
 | Table | Holds | Notable constraint |
-|---|---|---|
+| --- | --- | --- |
 | `schema_version` | applied migrations | — |
 | `mission` | launch site, ground elevation, epoch | latitude and longitude in range |
 | `balloon_config` | the configuration and its SHA-256 | drag coefficients in [0.1, 2.0]; masses positive |
@@ -378,7 +379,7 @@ ellipse, and the row proves which code and which configuration produced it.
 One hundred classes in `src/main`, by package:
 
 | Package | Principal types |
-|---|---|
+| --- | --- |
 | `domain` | `GeoPoint`, `BalloonState`, `StateHistory`, `BalloonConfig` + Builder, `FlightParameters`, `SimSettings`, `DispersionSpec`, `Distribution`, `Ensemble`, `LandingEllipse`, `Posterior`, `PredictionError`, `TelemetrySample`, `TelemetrySeries`, `FlightTruth`, `NoiseSpec`, `Geodesy`, `Gaussian`, `Units`, `LiftGas`, `Phase` |
 | `domain.error` | `SkyfixException` and five subclasses, each mapping to an exit code |
 | `core.atmos` | `AtmosphereModel`, `Ussa1976Atmosphere`, `ExponentialAtmosphere`, `WindField`, `ConstantWindField`, `SoundingWindField`, `WindFieldFactory` |
@@ -391,7 +392,7 @@ One hundred classes in `src/main`, by package:
 
 ### The algorithms, and why each is hand-written
 
-CLAUDE.md's first rule for this project is that every aerospace algorithm is the author's own Java.
+KARAN.md's first rule for this project is that every aerospace algorithm is the author's own Java.
 No Orekit, no Apache Commons Math, no scientific library anywhere in `src/main`. What that means in
 practice:
 
@@ -567,7 +568,7 @@ scheme, or a known truth the model never saw. A test that only checks the model 
 proves nothing.
 
 | Case | What it checks | Tolerance | Measured |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | T-V1 | USSA-1976 T, p, ρ at 25 altitudes against DS-3 | 0.1% | **T 0.0008%, p 0.0096%, ρ 0.0107%** |
 | T-V2 | Ascent rate against analytic terminal velocity | 2% | **worst 0.017%** |
 | T-V3 | RK4 against RKF45 landing separation | 50 m | **0.0025 / 0.000085 / 0.0000048 m** |
@@ -587,7 +588,7 @@ agent is not a performance figure, and an early T-P1 reading of 91,670 ms was ex
 Twenty-six test classes. What each one is responsible for:
 
 | Class | Covers |
-|---|---|
+| --- | --- |
 | `Ussa1976AtmosphereTest` | T-V1 against DS-3; layer continuity checked against the hydrostatic gradient rather than assumed; the 86 km ceiling refuses rather than extrapolates |
 | `AtmosphereComparisonTest` | ADR-1's measurement: how far wrong a best-fit exponential is, by altitude |
 | `WindFieldTest` | T-U-WIND: interpolation in height, and a held-and-flagged value outside the profile |
@@ -645,7 +646,7 @@ Per flight, as percentage error against the value each flight was generated from
 (`ParameterRecoveryTest`, sixteen pooled filters over 2,000 particles, every 10th sample):
 
 | flight | free lift | ascent Cd | burst scale | chute Cd | burst altitude | ESS |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | 01 | +6.02% | +5.91% | +0.75% | +0.83% | +31 m | 1553 |
 | 02 | -5.45% | -4.03% | -0.81% | +9.90% | -41 m | 1544 |
 | 03 | +3.66% | +2.55% | +0.48% | +16.12% | +20 m | 1659 |
@@ -679,7 +680,7 @@ Free lift and ascent drag trade off almost exactly. Scanning ascent Cd away from
 re-optimising free lift and burst diameter at each step:
 
 | ascent Cd error | compensating free lift | best whole-flight RMS |
-|---|---|---|
+| --- | --- | --- |
 | −10% | −12.05% | 10.98 m |
 | −5% | −6.02% | **10.45 m** |
 | +5% | +6.14% | **10.94 m** |
@@ -690,16 +691,14 @@ altitude profile to 10.5 m RMS — the GPS noise itself**. Over the ascent alone
 to 0.44 m. The recovered free-lift and ascent-Cd errors slide together on every one of the twenty
 flights, which is the signature of a ridge rather than of a bad estimator. T-V5's original "ascent
 Cd within 5%" criterion therefore tests the prior, not the filter, and is **measured and reported
-rather than gated**. `[PLACEHOLDER — amending a graded acceptance criterion is not the
-implementer's call. The measurement and a proposed replacement are in ADR-3; BLUEPRINT §10 stands
-until it is decided.]`
+rather than gated**. `[PLACEHOLDER — amending a graded acceptance criterion is not the implementer's call. The measurement and a proposed replacement are in ADR-3; BLUEPRINT §10 stands until it is decided.]`
 
 ### A single particle filter's bands are not credible intervals
 
 Measured coverage of the 5–95% band over twenty flights, nominally about 18/20:
 
 | configuration | free lift | ascent Cd | burst scale | chute Cd |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 1 filter × 500 particles | **0/20** | **0/20** | **0/20** | 5/20 |
 | 8 filters × 62 (same budget) | 13/20 | 16/20 | 14/20 | 16/20 |
 | 16 filters × 125 (default) | 17/20 | 17/20 | 15/20 | 20/20 |
@@ -720,9 +719,9 @@ calibration is bought by splitting the budget, not by spending more.
 T-V6, across all twenty flights, scored at burst — the moment a recovery team commits to a drive,
 with the whole descent still ahead:
 
-- median landing-error reduction at burst: **74.0%** (required 30%)
-- median reduction at landing: **99.4%**
-- median frozen pre-flight error: **15.4 km**
+* median landing-error reduction at burst: **74.0%** (required 30%)
+* median reduction at landing: **99.4%**
+* median frozen pre-flight error: **15.4 km**
 
 Both predictions fly in the same wind field the flights were generated in, so the only thing the
 frozen prediction does not know is what this particular balloon is doing. An earlier run that let
@@ -733,7 +732,7 @@ the wrong question.
 Per flight, in kilometres from the actual landing point:
 
 | flight | frozen error | at burst | at landing | cut at burst |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 01 | 27.67 km | 9.79 km | 1.06 km | 65% |
 | 02 | 6.65 km | 1.36 km | 0.01 km | 79% |
 | 03 | 11.86 km | 1.87 km | 0.06 km | 84% |
@@ -873,36 +872,36 @@ concurrency safe was taken in week 1, in `domain`, before any thread existed.
 
 ## 14 · Future enhancements
 
-- **Fix the remaining band narrowness.** Burst scale still covers 15/20 against a nominal 18/20.
-- **Explain the bimodal parachute-drag recovery.** Sixteen flights under 5%, four between 15% and
-  26%, uncorrelated with anything checked so far.
-- **A 4-D wind field.** A single sounding assumed to hold along a 400 km track is the model's largest
-  named error source (ADR-7). GRIB2 ingest is a term project by itself but would remove it.
-- **Terrain.** Ground elevation is one constant; SRTM lookup would put the landing on the actual
-  hillside.
-- **Live telemetry.** Replay-only is deliberate (ADR-4); a thin adapter writing the same CSV contract
-  would make the estimator run against a radio feed with no change to any service.
-- **A convex hull or density contour** where the ellipse's Gaussian assumption is a poor fit. §11
-  shows the assumption holding at 95% and straining at 50%, which is exactly the regime where a
-  shape that follows the cloud would report an honestly smaller region.
-- **Report the along-wind and across-wind components separately.** Since the footprint is
-  effectively one-dimensional, a recovery team would be better served by "somewhere on this road,
-  between here and here" than by an ellipse whose minor axis is 500 m and whose major axis is 76 km.
-  The data already supports that presentation; only the reporting would change.
-- **Estimate the wind scale as a fifth parameter**, and see whether the horizontal track supports
-  it. ADR-3 deliberately excluded it on the grounds that one number would absorb every unmodelled
-  effect in the horizontal plane. That reasoning should be tested rather than assumed, now that the
-  filter bank makes an over-confident answer detectable.
-- **Explain the two negative T-V6 flights properly.** Both had a wind scale near 1.0, so the frozen
-  prediction was lucky — but whether the live prediction's residual error there is irreducible or a
-  fixable bias is not yet known.
+* **Fix the remaining band narrowness.** Burst scale still covers 15/20 against a nominal 18/20.
+* **Explain the bimodal parachute-drag recovery.** Sixteen flights under 5%, four between 15% and
+26%, uncorrelated with anything checked so far.
+* **A 4-D wind field.** A single sounding assumed to hold along a 400 km track is the model's largest
+named error source (ADR-7). GRIB2 ingest is a term project by itself but would remove it.
+* **Terrain.** Ground elevation is one constant; SRTM lookup would put the landing on the actual
+hillside.
+* **Live telemetry.** Replay-only is deliberate (ADR-4); a thin adapter writing the same CSV contract
+would make the estimator run against a radio feed with no change to any service.
+* **A convex hull or density contour** where the ellipse's Gaussian assumption is a poor fit. §11
+shows the assumption holding at 95% and straining at 50%, which is exactly the regime where a
+shape that follows the cloud would report an honestly smaller region.
+* **Report the along-wind and across-wind components separately.** Since the footprint is
+effectively one-dimensional, a recovery team would be better served by "somewhere on this road,
+between here and here" than by an ellipse whose minor axis is 500 m and whose major axis is 76 km.
+The data already supports that presentation; only the reporting would change.
+* **Estimate the wind scale as a fifth parameter**, and see whether the horizontal track supports
+it. ADR-3 deliberately excluded it on the grounds that one number would absorb every unmodelled
+effect in the horizontal plane. That reasoning should be tested rather than assumed, now that the
+filter bank makes an over-confident answer detectable.
+* **Explain the two negative T-V6 flights properly.** Both had a wind scale near 1.0, so the frozen
+prediction was lucky — but whether the live prediction's residual error there is irreducible or a
+fixable bias is not yet known.
 
 ---
 
 ## 15 · Compliance checklist
 
 | Requirement of the brief | Where it is met |
-|---|---|
+| --- | --- |
 | Object-oriented design: encapsulation, inheritance, polymorphism, abstraction | `FlightPhase` hierarchy (Template Method), five strategy interfaces, immutable records, builders that validate |
 | Exception handling with a custom hierarchy | `SkyfixException` and five subclasses, each mapping to a documented exit code; no raw stack trace reaches the user (SC-7) |
 | Collections and generics | `StateHistory`, `Ensemble`, `TelemetrySeries`, `CompletionService<MemberOutcome>`, generic `Repository<T>` |
@@ -916,27 +915,27 @@ concurrency safe was taken in week 1, in `domain`, before any thread existed.
 
 ### Honest statement of what is not finished
 
-Per CLAUDE.md's fifth rule, nothing in this report is asserted without a measurement behind it, and
+Per KARAN.md's fifth rule, nothing in this report is asserted without a measurement behind it, and
 these items are open rather than quietly omitted:
 
-- **DS-1** ships a synthetic sounding, labelled as such, because the upper-air archive was not
-  reachable from the build environment.
-- **DS-3** is corroborated by two independent implementations agreeing to 0.00987%, not yet
-  transcribed from the primary document. It carries a `verify:` marker.
-- **DS-4**'s catalogue burst and launch diameters carry a `verify:` marker.
-- **The lifting-gas molar masses** and **the launch site's geoid undulation** carry markers for the
-  same reason: the standards body and the geoid model are both unreachable from here.
-- **The pre-flight dispersion spreads** are stated engineering estimates. They cannot be measured
-  from DS-6, because DS-6's truth parameters are drawn from the very specification the spreads
-  define — an earlier note in the code proposing exactly that fit has been withdrawn as circular.
-- **The barometric altitude sigma factor** is measured at 1.71 on DS-6 and held at 4.0, because
-  DS-6 generates its pressures from the same atmosphere model the reader inverts and therefore
-  cannot show the model bias the factor mainly exists for. V-5 in the ledger gives the argument.
-- **T-V5's ascent-Cd criterion** is measured and reported rather than gated, for the reason in §11.
-  Amending it is not the implementer's decision.
-- **Two references** in §17 need their full citations checked before submission.
-- **Parachute-drag recovery is bimodal** and unexplained; **burst-scale band coverage** is 15/20
-  against a nominal 18/20.
+* **DS-1** ships a synthetic sounding, labelled as such, because the upper-air archive was not
+reachable from the build environment.
+* **DS-3** is corroborated by two independent implementations agreeing to 0.00987%, not yet
+transcribed from the primary document. It carries a `verify:` marker.
+* **DS-4**'s catalogue burst and launch diameters carry a `verify:` marker.
+* **The lifting-gas molar masses** and **the launch site's geoid undulation** carry markers for the
+same reason: the standards body and the geoid model are both unreachable from here.
+* **The pre-flight dispersion spreads** are stated engineering estimates. They cannot be measured
+from DS-6, because DS-6's truth parameters are drawn from the very specification the spreads
+define — an earlier note in the code proposing exactly that fit has been withdrawn as circular.
+* **The barometric altitude sigma factor** is measured at 1.71 on DS-6 and held at 4.0, because
+DS-6 generates its pressures from the same atmosphere model the reader inverts and therefore
+cannot show the model bias the factor mainly exists for. V-5 in the ledger gives the argument.
+* **T-V5's ascent-Cd criterion** is measured and reported rather than gated, for the reason in §11.
+Amending it is not the implementer's decision.
+* **Two references** in §17 need their full citations checked before submission.
+* **Parachute-drag recovery is bimodal** and unexplained; **burst-scale band coverage** is 15/20
+against a nominal 18/20.
 
 Every one of these is blocked on a document the build environment cannot reach — `ntrs.nasa.gov`,
 `weather.uwyo.edu`, `ciaaw.org` and `doi.org` all resolve to nothing here — or on a decision that
@@ -956,7 +955,7 @@ Every figure quoted here comes from a command in this repository. A reader with 
 fresh clone can reproduce all of them, offline:
 
 | Figures | Command |
-|---|---|
+| --- | --- |
 | T-V1, T-V2, T-V3, T-V4, ADR-1, ADR-9 | `./scripts/run.sh validate` |
 | Coverage by package | `./mvnw verify`, then `target/site/jacoco/index.html` |
 | T-P1, T-P2, T-P4, T-R1 | `./mvnw verify -Pperf` |
@@ -975,7 +974,7 @@ so the report cannot disagree with the run that produced it.
 ### Exit codes
 
 | Code | Meaning | Code | Meaning |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 0 | success | 4 | model queried outside its valid range |
 | 1 | usage error | 5 | solver did not converge |
 | 2 | input violates a stated rule | 6 | persistence failure |
@@ -988,15 +987,15 @@ gate it serves as in `.github/workflows/build.yml`.
 
 ## 17 · References
 
-- `docs/BLUEPRINT.md` — the full specification: FR/NFR/UC/ADR/T- identifiers, datasets, evaluation
-  methodology, traceability matrix.
-- `docs/adr/ADR-1.md` … `ADR-18.md` — one file per design decision, each carrying the measurement
-  that justified it.
-- U.S. Standard Atmosphere, 1976. NOAA-S/T 76-1562. `verify:` the DS-3 table against Table I of the
-  primary document before citing it.
-- Liu, J. and West, M. Combined parameter and state estimation in simulation-based filtering.
-  `verify:` full citation before submission.
-- Gordon, N., Salmond, D. and Smith, A. Novel approach to nonlinear/non-Gaussian Bayesian state
-  estimation. `verify:` full citation before submission.
-- University of Wyoming upper-air archive — the sounding file layout this project parses.
-  `verify:` its terms before redistributing any real file.
+* `docs/BLUEPRINT.md` — the full specification: FR/NFR/UC/ADR/T- identifiers, datasets, evaluation
+methodology, traceability matrix.
+* `docs/adr/ADR-1.md` … `ADR-18.md` — one file per design decision, each carrying the measurement
+that justified it.
+* U.S. Standard Atmosphere, 1976. NOAA-S/T 76-1562. `verify:` the DS-3 table against Table I of the
+primary document before citing it.
+* Liu, J. and West, M. Combined parameter and state estimation in simulation-based filtering.
+`verify:` full citation before submission.
+* Gordon, N., Salmond, D. and Smith, A. Novel approach to nonlinear/non-Gaussian Bayesian state
+estimation. `verify:` full citation before submission.
+* University of Wyoming upper-air archive — the sounding file layout this project parses.
+`verify:` its terms before redistributing any real file.
